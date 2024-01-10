@@ -12,6 +12,7 @@
         <module>library</module>
         <module>application</module>
         <module>spring-crud-user-role</module>
+        <module>spring-validate</module>
     </modules>
 
 </project>
