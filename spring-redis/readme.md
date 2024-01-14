@@ -6,3 +6,4 @@ https://www.baeldung.com/spring-boot-h2-database
 
 https://redis.io/docs/install/install-redis/install-redis-on-mac-os/
 
+https://positivethinking.tech/insights/redis-cache-in-spring-boot-applications/
