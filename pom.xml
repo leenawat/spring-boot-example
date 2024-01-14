@@ -13,6 +13,7 @@
         <module>application</module>
         <module>spring-crud-user-role</module>
         <module>spring-validate</module>
+        <module>spring-redis</module>
     </modules>
 
 </project>
