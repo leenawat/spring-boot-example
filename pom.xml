@@ -14,6 +14,7 @@
         <module>spring-crud-user-role</module>
         <module>spring-validate</module>
         <module>spring-redis</module>
+        <module>spring-boot-security-jwt-mysql</module>
     </modules>
 
 </project>
