@@ -15,6 +15,7 @@
         <module>spring-validate</module>
         <module>spring-redis</module>
         <module>spring-boot-security-jwt-mysql</module>
+        <module>spring-app-property-demo</module>
     </modules>
 
 </project>
