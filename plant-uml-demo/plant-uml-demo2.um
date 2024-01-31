@@ -1,0 +1,28 @@
+@startuml "Sequence Diagram"
+
+actor Actor
+participant "Apigee" as A
+participant "Inquiries Service" as B
+participant "Partner Service" as C
+participant "Master Service" as D
+
+Actor -> A ++ : GET /v1/inquiries/countries
+
+A -> B ++ : /v1/inquiries/countries
+
+B -> C ++ : /v1/partners/countries
+C -> B : Response 1
+Deactivate C
+
+B -> D ++ : /v1/countries
+D -> B : Response 2
+Deactivate D
+
+B -> B : Manipulate response
+
+B -> A : Response 3
+Deactivate B
+
+A -> Actor: Response 4
+Deactivate A
+@enduml

@@ -16,6 +16,7 @@
         <module>spring-redis</module>
         <module>spring-boot-security-jwt-mysql</module>
         <module>spring-app-property-demo</module>
+        <module>spring-kafka-synchronous-example</module>
     </modules>
 
 </project>
