@@ -1,0 +1,1 @@
+i try to use code from : https://www.javainuse.com/spring/cloud-gateway-eureka
