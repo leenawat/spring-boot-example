@@ -44,7 +44,8 @@ public class ItemService {
         return Optional.of(itemRepository.save(item));
     }
 
-    @CacheEvict(value = "user", allEntries = true)
+//    @CacheEvict(value = "itemCache",key = "#id", allEntries = true)
+    @CacheEvict(value = "itemCache",key = "#id")
     public boolean delete(Long id) {
         try {
             itemRepository.deleteById(id);
