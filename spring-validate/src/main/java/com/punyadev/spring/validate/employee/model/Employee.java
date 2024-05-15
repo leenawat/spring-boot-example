@@ -1,5 +1,6 @@
 package com.punyadev.spring.validate.employee.model;
 
+import com.punyadev.spring.validate.employee.interfaces.FirstValidate;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,4 +24,7 @@ public class Employee {
     @Min(value = 18, message = "Age must be between 18 and 30")
     @Max(value = 30, message = "Age must be between 18 and 30")
     private Integer age;
+
+    @NotNull(groups = {FirstValidate.class})
+    private String job;
 }
