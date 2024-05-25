@@ -12,6 +12,10 @@ spec:
       labels:
         app: spring-kafka-tracing
     spec:
+      hostAliases:
+        - ip: "192.168.1.60"
+          hostnames:
+          - "kafka"
       containers:
         - name: spring-kafka-tracing
           image: leenawat/spring-kafka-tracing:13
