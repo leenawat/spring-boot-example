@@ -1,5 +1,6 @@
 # Stage 1: Build the application
-FROM maven:3.8.4-openjdk-11-slim AS builder
+#FROM maven:3.8.4-openjdk-11-slim AS builder
+FROM maven:3.8.4-openjdk-17-slim AS builder
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -18,7 +19,7 @@ RUN mvn package -DskipTests
 
 
 # Stage 2: Package the application JAR for runtime
-FROM openjdk:11-jre-slim AS runtime
+FROM openjdk:17-jre-slim AS runtime
 
 # Set the working directory inside the container
 WORKDIR /app
