@@ -19,7 +19,7 @@ RUN mvn package -DskipTests
 
 
 # Stage 2: Package the application JAR for runtime
-FROM openjdk:17-jre-slim AS runtime
+FROM eclipse-temurin:17-jre AS runtime
 
 # Set the working directory inside the container
 WORKDIR /app
