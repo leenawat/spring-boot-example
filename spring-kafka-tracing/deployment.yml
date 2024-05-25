@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-kafka-tracing
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-kafka-tracing
+  template:
+    metadata:
+      labels:
+        app: spring-kafka-tracing
+    spec:
+      containers:
+        - name: spring-kafka-tracing
+          image: leenawat/spring-kafka-tracing:latest
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-kafka-tracing-service
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: spring-kafka-tracing

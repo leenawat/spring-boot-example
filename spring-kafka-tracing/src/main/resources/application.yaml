@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: @project.artifactId@
+  kafka:
+    bootstrap-servers: 192.168.1.60:9092
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      group-id: @project.artifactId@
+      auto-offset-reset: latest
+      enable-auto-commit: true
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: com.punyadev.spring_kafka_tracing.dto
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+  zipkin:
+    tracing:
+      endpoint: http://192.168.1.60:9411/api/v2/spans
+#zipkin:
+#  base-url: http://192.168.1.60:9411
+#  enabled: true # ??????????? true ??????????????? Zipkin Reporter
+logging:
+  level:
+    io.zipkin.reporter2: DEBUG # ?????????? log ?????? Zipkin Reporter ???? DEBUG ??????????????????? debug (?????????)
