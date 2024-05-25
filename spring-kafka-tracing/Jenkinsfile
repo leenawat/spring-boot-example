@@ -1,0 +1,68 @@
+
+pipeline {
+    agent any
+
+    environment {
+        DOCKER_IMAGE = "leenawat/spring-kafka-tracing"
+        KUBE_CONTEXT = "minikube"
+        KUBE_NAMESPACE = "default"
+        DOCKER_REGISTRY = "index.docker.io"
+        DOCKER_CREDENTIALS_ID = "docker-credentials-id"
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout code from the Git repository
+                git branch: 'main', url: 'https://github.com/leenawat/spring-boot-example.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                script {
+                    //sh 'docker logout'
+                    sh 'cd spring-kafka-tracing'
+                // Build Docker image
+                    docker.build("${DOCKER_IMAGE}:${env.BUILD_ID}", "-f ./spring-kafka-tracing/Dockerfile .")
+                }
+            }
+        }
+        //start
+        stage('Push') {
+            steps {
+                script {
+                    docker.withRegistry("https://${DOCKER_REGISTRY}/v1/", "${DOCKER_CREDENTIALS_ID}") {
+                        docker.image("${DOCKER_IMAGE}:${env.BUILD_ID}").push()
+                    }
+                }
+            }
+        }
+        //end
+
+        // start
+
+        stage('Deploy to Minikube') {
+            steps {
+                script {
+                    withCredentials([file(credentialsId: 'kubeconfigFile', variable: 'KUBECONFIG')]) {
+                        sh """
+                        kubectl config view
+                        kubectl apply -f spring-kafka-tracing/deployment.yaml
+                        kubectl rollout status deployment/spring-kafka-tracing
+                        """
+                    }
+                }
+            }
+        }
+        // end
+    }
+
+    post {
+        success {
+            echo 'Deployment successful!'
+        }
+        failure {
+            echo 'Deployment failed!'
+        }
+    }
+}
