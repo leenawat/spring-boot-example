@@ -17,8 +17,8 @@ public class Consumer {
         System.out.println("Message received by consumer 1: " + content);
     }
 
-    @KafkaListener(topics = "test", groupId = "anotherGroup")
-    public void processMessage2(String content) {
-        System.out.println("Message received by consumer 2: " + content);
-    }
+//    @KafkaListener(topics = "test", groupId = "anotherGroup")
+//    public void processMessage2(String content) {
+//        System.out.println("Message received by consumer 2: " + content);
+//    }
 }
