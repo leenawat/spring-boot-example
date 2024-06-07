@@ -17,3 +17,14 @@ app.id=1
 ```
 java -jar target/spring-app-property-demo-0.0.1-SNAPSHOT.jar --app.id=4 --app.name=app4
 ```
+
+set env for command line mac or linux
+```
+source load_env.sh
+```
+
+set env for command line windows
+```
+load_env.bat
+```
+
