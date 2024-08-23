@@ -1,0 +1,54 @@
+spring:
+  application:
+    name: batch-read-db-write-file
+
+  datasource:
+    url: jdbc:h2:mem:testdb;MODE=MYSQL;DATABASE_TO_LOWER=TRUE;CASE_INSENSITIVE_IDENTIFIERS=TRUE;
+    username: sa
+    password: ""
+    driverClassName: org.h2.Driver
+
+  h2:
+    console:
+      enabled: true
+
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+      naming.physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    #database-platform: org.hibernate.dialect.H2Dialect
+
+  batch:
+    jdbc:
+      job:
+        enabled: false
+app:
+  config:
+    file-name: output.txt
+    db-url: jdbc:mysql://localhost:3306/mydb
+    db-user: user
+    db-password: password
+    upload-url: http://example.com/upload
+    book-category: fiction # ???????? category ??????????
+    chunk-size: 10
+management:
+  endpoints:
+    web:
+      exposure:
+        include: beans
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql: TRACE
+        orm:
+          jdbc:
+            bind: TRACE
