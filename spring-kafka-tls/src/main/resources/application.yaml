@@ -1,0 +1,32 @@
+server.port: 8081
+spring:
+  kafka:
+    properties:
+      group:
+        id: normal_transaction
+      ssl:
+        truststore:
+          location: /Users/jack/github.com/jackysolanki007/Dockerized-kafka-with-TLS-SSL/cert/truststore/kafka.truststore.jks
+          password: 123456
+      security:
+        protocol: SASL_SSL
+      sasl:
+        mechanism: PLAIN
+        jaas:
+          config: org.apache.kafka.common.security.plain.PlainLoginModule required username="controller_user" password="bitnami";
+    bootstrap-servers: example.kafka.com:9092
+    producer:
+      bootstrap-servers: ${spring.kafka.bootstrap-servers}
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      bootstrap-servers: ${spring.kafka.bootstrap-servers}
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#      properties:
+#        spring.json.trusted.packages: "*"
+      group-id: normal_transaction
+      auto-offset-reset: latest
+kafka:
+  topic: test
+  group.id: my-consumer-group
