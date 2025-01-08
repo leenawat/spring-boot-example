@@ -47,3 +47,15 @@ curl -X POST 'http://localhost:8090/api/auth/login' -H 'Content-Type: applicatio
   "exp": 1736430657
 }
 ```
+
+## john login
+```shell
+export AUTH_TOKEN="Bearer $(curl -X POST 'http://localhost:8090/api/auth/login' -H 'Content-Type: application/json;charset=UTF-8' -d '{
+  "username": "john",
+  "password": "password123"
+}' | jq -r '.token')"
+```
+
+```shell
+curl -X GET 'http://localhost:8090/api/auth/me' -H "Authorization: $AUTH_TOKEN" 
+```
